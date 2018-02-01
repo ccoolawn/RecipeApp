@@ -1,8 +1,15 @@
 require 'test_helper'
 
 class RecipeTest < ActiveSupport::TestCase
+	# Associates user_id with recipe for one to many relationship
 	def setup
-		@recipe = Recipe.new(ingredient: "Chicken", description: "Grilled Chicken Alfredo")
+		@user = User.create!(firstname: "Billy", lastname: "Robinson", email: "brobinson@example.com")
+		@recipe = @user.recipes.build(ingredient: "Chicken", description: "Grilled Chicken Alfredo")
+	end
+
+	test "recipe without user should be invalid" do
+		@recipe.user_id = nil
+		assert_not @recipe.valid?
 	end
 
 	test "recipe should be valid" do
@@ -28,4 +35,5 @@ class RecipeTest < ActiveSupport::TestCase
 		@recipe.description = "a" * 501
 		assert_not @recipe.valid?
 	end
+
 end
