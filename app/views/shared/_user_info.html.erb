@@ -1,0 +1,7 @@
+<p class="text-center">
+	<span class="quiet">
+		<small><%= image_tag @recipe.user.gravatar_url, class: "rounded" %></small>
+		<small>Created by: <%= @recipe.user.firstname %> </small>
+		<small><%= time_ago_in_words(@recipe.created_at) %> ago</small>
+	</span>
+</p>

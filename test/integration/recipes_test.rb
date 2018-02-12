@@ -20,4 +20,40 @@ class RecipesTest < ActionDispatch::IntegrationTest
 		assert_match @recipe.recipeName, response.body
 		assert_match @recipe2.recipeName, response.body
 	end
+
+	test "should get recipes show" do
+		get recipe_path(@recipe)
+		assert_template 'recipes/show'
+		assert_match @recipe.recipeName, response.body
+		assert_match @recipe.description, response.body
+		assert_match @user.firstname, response.body
+	end
+
+	test "create new valid recipe" do
+		get new_recipe_path
+		assert_template 'recipes/new'
+		ingredient_of_recipe = "Chicken"
+		recipeName_of_recipe = "Chicken Alfredo"
+		description_of_recipe = "A short description of the recipe."
+		instructions_of_recipe = "A detailed list of instructions on how to make the dish."
+		assert_difference 'Recipe.count', 1 do
+			post recipes_path, params: {recipe: {ingredient: ingredient_of_recipe, description: description_of_recipe, recipeName: recipeName_of_recipe, instructions: instructions_of_recipe}}
+		end
+		follow_redirect!
+		assert_match ingredient_of_recipe, response.body
+		assert_match recipeName_of_recipe, response.body
+		assert_match description_of_recipe, response.body
+		assert_match instructions_of_recipe, response.body
+	end
+
+	test "reject invalid recipe submissions" do
+		get new_recipe_path
+		assert_template 'recipes/new'
+		assert_no_difference 'Recipe.count' do
+			post recipes_path, params: {recipe: {ingredient: " ", description: " ", recipeName: " ", instructions: " "}}
+		end
+		assert_template 'recipes/new'
+		assert_select 'h2.panel-title'
+		assert_select 'div.panel-body'
+	end
 end
