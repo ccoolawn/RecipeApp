@@ -3,7 +3,9 @@
 <% @recipes.each do |recipe| %>
 	<div class="bg-faded p-4 my-4">
 	  <hr class="divider">
-	  <h2 class="text-center text-lg text-uppercase my-0"><%= recipe.recipeName %></h2>
+	  <h2 class="text-center text-lg text-uppercase my-0">
+	  	<%= link_to recipe.recipeName, recipe_path(recipe) %>
+  	</h2>
 	  <hr class="divider">
 	  <img class="img-fluid float-left mr-4 d-none d-lg-block">
 	  <p class="text-center"><%= truncate(recipe.description, length: 150) %></p>

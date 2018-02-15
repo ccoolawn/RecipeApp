@@ -17,8 +17,8 @@ class RecipesTest < ActionDispatch::IntegrationTest
 	test "should get recipes listing" do
 		get recipes_path
 		assert_template 'recipes/index'
-		assert_match @recipe.recipeName, response.body
-		assert_match @recipe2.recipeName, response.body
+		assert_select 'a[href=?]', recipe_path(@recipe), text: @recipe.recipeName
+		assert_select 'a[href=?]', recipe_path(@recipe2), text: @recipe2.recipeName
 	end
 
 	test "should get recipes show" do
@@ -27,6 +27,8 @@ class RecipesTest < ActionDispatch::IntegrationTest
 		assert_match @recipe.recipeName, response.body
 		assert_match @recipe.description, response.body
 		assert_match @user.firstname, response.body
+		assert_select 'a[href=?]', edit_recipe_path(@recipe), text: "Edit This Recipe"
+		assert_select 'a[href=?]', recipe_path(@recipe), text: "Delete This Recipe"
 	end
 
 	test "create new valid recipe" do
@@ -53,7 +55,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
 			post recipes_path, params: {recipe: {ingredient: " ", description: " ", recipeName: " ", instructions: " "}}
 		end
 		assert_template 'recipes/new'
-		assert_select 'h2.panel-title'
-		assert_select 'div.panel-body'
+		assert_select 'h2.card-title'
+		assert_select 'div.card-body'
 	end
 end

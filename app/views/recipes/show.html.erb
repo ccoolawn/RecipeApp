@@ -1,10 +1,18 @@
 <div class="bg-faded p-4 my-4">
-	  <hr class="divider">
-	  <h2 class="text-center text-lg text-uppercase my-0"><%= @recipe.recipeName %></h2>
-	  <hr class="divider">
-	  <img class="img-fluid float-left mr-4 d-none d-lg-block" src="img/intro-pic.jpg" alt="">
-	  <p class="text-center"><%= simple_format(@recipe.description) %></p>
-	  <hr class="divider">
-  	<p class="text-center"><%= sanitize @recipe.instructions, tags: %w(strong em p br div ul ol li) %></p>
-  	<%= render 'shared/user_info' %>
+  <hr class="divider">
+  <h2 class="text-center text-lg text-uppercase my-0"><%= @recipe.recipeName %></h2>
+  <hr class="divider">
+  <img class="img-fluid float-left mr-4 d-none d-lg-block" src="img/intro-pic.jpg" alt="">
+  <p class="text-center"><%= simple_format(@recipe.description) %></p>
+  <hr class="divider">
+	<p class="text-center"><%= sanitize @recipe.instructions, tags: %w(strong em p br div ul ol li) %></p>
+	<%= render 'shared/user_info' %>
+	<%= link_to "Edit This Recipe", edit_recipe_path(@recipe), class: "btn btn-warning btn-color"%>
+	<%= link_to "Delete This Recipe", recipe_path(@recipe), method: :delete,
+		data: {confirm: "Are you sure you want to delete this recipe? Recipe cannot be recovered once deleted."}, class: "btn btn-danger" %>
+	<div class="text-center color-match">
+		<small class= "color-match">
+			[<%= link_to "Return to recipes listing", recipes_path %>]
+		</small>
+	</div>
 </div>
