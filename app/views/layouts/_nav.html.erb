@@ -1,4 +1,6 @@
-<div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Recipe Locker</div>
+<div class="tagline-upper text-center text-heading mt-5 d-none d-lg-block">
+  <%= link_to image_tag("recipeLocker.png") %>
+</div>
 <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block"></div>
 
 <!-- Navigation -->
@@ -11,7 +13,7 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item active px-lg-4">
-          <a class="nav-link text-uppercase text-expanded" href="index.html">Home
+          <%= link_to "Home", pages_home_path, class: "nav-link text-uppercase text-expanded" %>
             <span class="sr-only">(current)</span>
           </a>
         </li>

@@ -3,7 +3,8 @@ require 'test_helper'
 class RecipeTest < ActiveSupport::TestCase
 	# Associates user_id with recipe for one to many relationship
 	def setup
-		@user = User.create!(firstname: "Billy", lastname: "Robinson", email: "brobinson@example.com")
+		@user = User.create!(firstname: "Billy", lastname: "Robinson", email: "brobinson@example.com",
+											password: "password", password_confirmation: "password")
 		@recipe = @user.recipes.build(ingredient: "Chicken", description: "Grilled Chicken Alfredo")
 	end
 

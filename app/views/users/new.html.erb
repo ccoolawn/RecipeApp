@@ -1,0 +1,18 @@
+<%= render 'shared/user_errors', obj: @user %>
+
+<div class="wrapper">
+	<%= form_for(@user, :html => {class: "form-signin bg-faded", role: "form"}) do |f| %>
+		<h2 class="form-signin-heading"><%= render 'shared/page_title', title: "Sign Up" %></h2>
+		<%= f.text_field :firstname, class: "form-control", placeholder: "First Name", autofocus: true %>
+		<%= f.text_field :lastname, class: "form-control", placeholder: "Last Name", autofocus: true %>
+		<%= f.email_field :email, class: "form-control", placeholder: "Email", autofocus: true %>
+		<%= f.password_field :password, class: "form-control", placeholder: "Enter Password" %>
+		<%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confim Password" %>
+		<label class="checkbox">
+			<input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+		</label>
+		<div class="text-center">
+			<%= f.submit "Create my Account", class: "btn btn-warning btn-color" %>
+		</div>
+	<% end %>
+</div>
