@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update]
 
+	def index
+		@users = User.paginate(:page => params[:page], :per_page => 4)
+	end
+
 	def new
 		@user = User.new
 	end
@@ -16,7 +20,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-
+		@user_recipes = @user.recipes.paginate(:page => params[:page], :per_page => 4)
 	end
 
 	def edit

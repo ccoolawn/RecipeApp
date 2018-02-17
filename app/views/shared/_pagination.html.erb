@@ -1,0 +1,6 @@
+<div class="bg-faded p-4 my-4">
+	<hr class="divider">
+	<div class="text-uppercase">
+		<%= will_paginate(@recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination justify-content-center') %>
+	</div>
+</div>

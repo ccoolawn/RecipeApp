@@ -1,35 +1,38 @@
 <div class="tagline-upper text-center text-heading mt-5 d-none d-lg-block">
-  <%= link_to image_tag("recipeLocker.png") %>
+	<%= link_to image_tag("recipeLocker.png") %>
 </div>
 <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block"></div>
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
-  <div class="container">
-    <%= link_to "RecipeLocker", root_path, class: "navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none", id: "logo" %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item active px-lg-4">
-          <%= link_to "Home", pages_home_path, class: "nav-link text-uppercase text-expanded" %>
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item px-lg-4">
-          <%= link_to "About", pages_about_path, class: "nav-link text-uppercase text-expanded" %>
-        </li>
-        <li class="nav-item px-lg-4">
-          <%= link_to "Create a Recipe", new_recipe_path, class: "nav-link text-uppercase text-expanded" %>
-        </li>
-        <li class="nav-item px-lg-4">
-          <a class="nav-link text-uppercase text-expanded" href="blog.html">Blog</a>
-        </li>
-        <li class="nav-item px-lg-4">
-          <a class="nav-link text-uppercase text-expanded" href="contact.html">Contact</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+	<div class="container">
+		<%= link_to "RecipeLocker", root_path, class: "navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none", id: "logo" %>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav mx-auto">
+				<li class="nav-item active px-lg-4">
+					<%= link_to "Home", pages_home_path, class: "nav-link text-uppercase text-expanded" %>
+						<span class="sr-only">(current)</span>
+					</a>
+				</li>
+				<li class="nav-item px-lg-4">
+					<%= link_to "About", pages_about_path, class: "nav-link text-uppercase text-expanded" %>
+				</li>
+				<li class="nav-item px-lg-4">
+					<%= link_to "Users", users_path, class: "nav-link text-uppercase text-expanded" %>
+				</li>
+				<li class="nav-item px-lg-4">
+					<%= link_to "Create a Recipe", new_recipe_path, class: "nav-link text-uppercase text-expanded" %>
+				</li>
+				<li class="nav-item px-lg-4">
+					<a class="nav-link text-uppercase text-expanded" href="blog.html">Blog</a>
+				</li>
+				<li class="nav-item px-lg-4">
+					<a class="nav-link text-uppercase text-expanded" href="contact.html">Contact</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 </nav>

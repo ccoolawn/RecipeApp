@@ -1,14 +1,20 @@
 
 <div class="bg-faded p-4 my-4">
-  <hr class="divider">
-  <h2 class="text-center text-lg text-uppercase my-0">
+	<hr class="divider">
+	<h2 class="text-center text-lg text-uppercase my-0">
 		<%= render 'shared/page_title', title: "#{@user.firstname} #{@user.lastname}'s Profile" %>
-  </h2>
-  <hr class="divider">
-  <div class="img-fluid float-left mr-4 d-none d-lg-block">
-  	<%= image_tag @user.gravatar_url, class: "rounded" %>
-  </div>
-  <p class="text-center text-uppercase">List of <%= @user.firstname %> <%= @user.lastname %>'s Recipes</p>
-  <hr class="divider">
-	<%= render 'recipes/recipe', obj: @user.recipes %>
+	</h2>
+	<hr class="divider">
+	<div class="img-fluid float-left mr-4 d-none d-lg-block">
+		<%= image_tag @user.gravatar_url, class: "rounded" %>
+	</div>
+	<p class="text-center text-uppercase">List of <%= @user.firstname %> <%= @user.lastname %>'s Recipes</p>
+	<hr class="divider">
+	<div class="center">
+		<%= will_paginate(@user_recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination justify-content-center') %>
+	</div>
+	<%= render 'recipes/recipe', obj: @user_recipes %>
+	<div class="center">
+		<%= will_paginate(@user_recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination justify-content-center') %>
+	</div>
 </div>

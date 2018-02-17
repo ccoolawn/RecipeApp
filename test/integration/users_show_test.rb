@@ -13,13 +13,15 @@ class UsersShowTest < ActionDispatch::IntegrationTest
 		@recipe2.save
 	end
 
-	test "should get users show" do
-		get user_path(@user)
-		assert_template 'users/show'
-		assert_select 'a[href=?]', recipe_path(@recipe), text: @recipe.recipeName
-		assert_select 'a[href=?]', recipe_path(@recipe2), text: @recipe2.recipeName
-		# assert_match @recipe.description, response.body
-		# assert_match @recipe2.description, response.body
-		assert_match @user.firstname, response.body
+	test "should get users index" do
+		get users_path
+		assert_response :success
+	end
+
+	test "should get users listing" do
+		get users_path
+		assert_template 'users/index'
+		assert_select 'a[href=?]', user_path(@user), text: @user.firstname
+		assert_select 'a[href=?]', user_path(@user2), text: @user2.firstname
 	end
 end

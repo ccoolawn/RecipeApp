@@ -5,4 +5,5 @@ class Recipe < ApplicationRecord
 	validates :recipeName, presence: true
 	validates :instructions, presence: true, length: {minimum: 25, maximum: 5000}
 	validates :description, presence: true, length: {minimum: 5, maximum: 500}
+	default_scope -> { order(updated_at: :desc)}
 end

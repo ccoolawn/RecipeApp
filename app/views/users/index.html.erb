@@ -1,0 +1,23 @@
+<%= render 'shared/page_title', title: "List of all Users" %>
+
+<%= render 'shared/pagination' %>
+
+<% @users.each do |user| %>
+	<div class="bg-faded p-4 my-4">
+		<hr class="divider">
+		<div class="text-center">
+			<%= image_tag user.gravatar_url(:size => 120), class: "rounded" %>
+		</div>
+		<hr class="divider">
+		<h2 class="text-center text-lg text-uppercase my-0">
+			<%= link_to "#{user.firstname} " "#{user.lastname}", user_path(user) %>
+		</h2>
+		<p class="text-center">
+			<span class="quiet">
+			 <small><%= pluralize(user.recipes.count, "recipe") if user.recipes %> contributed</small>
+			</span>
+		</p>
+	</div>
+<% end %>
+
+<%= render 'shared/pagination' %>
