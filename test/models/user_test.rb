@@ -79,4 +79,12 @@ class UserTest < ActiveSupport::TestCase
 		@user.password = @user.password_confirmation = "x" * 7
 		assert_not @user.valid?
 	end
+
+	test "assciated should be destroyed" do
+		@user.save
+		@user.recipes.create!(ingredient: "test delete", recipeName: "test delete", description: "test deletetest deletetest deletetest deletetest deletetest deletetest delete", instructions: "test deletetest delete test delete test delete test delete test delete")
+		assert_difference 'Recipe.count', -1 do
+			@user.destroy
+		end
+	end
 end

@@ -18,10 +18,4 @@ class UsersShowTest < ActionDispatch::IntegrationTest
 		assert_response :success
 	end
 
-	test "should get users listing" do
-		get users_path
-		assert_template 'users/index'
-		assert_select 'a[href=?]', user_path(@user), text: @user.firstname
-		assert_select 'a[href=?]', user_path(@user2), text: @user2.firstname
-	end
 end

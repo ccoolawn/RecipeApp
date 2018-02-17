@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 	include Gravtastic
   gravtastic :secure => true, :size => 30, :rating => 'PG', :default => "retro"
-	has_many :recipes
+	has_many :recipes, dependent: :destroy
 	before_save  {self.email = email.downcase}
 	validates :firstname, presence: true, length: {maximum: 15}
 	validates :lastname, presence: true, length: {maximum: 15}
