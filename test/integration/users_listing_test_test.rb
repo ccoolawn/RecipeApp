@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class UsersListingTestTest < ActionDispatch::IntegrationTest
+
 	def setup
 		@user = User.create!(firstname: "Billy", lastname: "Robinson", email: "brobinson@example.com",
 											password: "password", password_confirmation: "password")
@@ -13,7 +14,6 @@ class UsersListingTestTest < ActionDispatch::IntegrationTest
 		assert_template 'users/index'
 		assert_select "a[href=?]", user_path(@user), text: "#{@user.firstname} #{@user.lastname}"
 		assert_select "a[href=?]", user_path(@user2), text: "#{@user2.firstname} #{@user2.lastname}"
-
 	end
 
 	test "should delete user" do

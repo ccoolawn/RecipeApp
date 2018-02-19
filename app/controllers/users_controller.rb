@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			flash[:success] = "Hi #{@user.firstname} and welcome to Recipe Locker! You have successfully created a new user account!"
-			redirect_to user_path(@user)
+			redirect_to @user
 		else
 			render 'new'
 		end

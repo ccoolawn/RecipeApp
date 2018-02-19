@@ -1,0 +1,10 @@
+<div class="wrapper">
+	<%= form_for(:session, :html => {class: "form-signin bg-faded", role: "form"}, url: login_path) do |f| %>
+		<h2 class="form-signin-heading"><%= render 'shared/page_title', title: "Log In" %></h2>
+		<%= f.email_field :email, class: "form-control", placeholder: "Email", autofocus: true %>
+		<%= f.password_field :password, class: "form-control", placeholder: "Enter Password" %>
+		<div class="text-center">
+			<%= f.submit "Log In", class: "btn btn-warning btn-color" %>
+		</div>
+	<% end %>
+</div>

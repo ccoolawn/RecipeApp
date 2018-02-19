@@ -18,7 +18,7 @@ class RecipesController < ApplicationController
 		@recipe.user = User.first
 		if @recipe.save
 			flash[:success] = "You have successfully created a new recipe!"
-			redirect_to recipe_path(@recipe)
+			redirect_to @recipe
 		else
 			render 'new'
 		end
@@ -31,7 +31,7 @@ class RecipesController < ApplicationController
 	def update
 		if @recipe.update(recipe_params)
 			flash[:success] = "You have successfully updated your recipe!"
-			redirect_to recipe_path(@recipe)
+			redirect_to @recipe
 		else
 			render 'edit'
 		end
