@@ -26,8 +26,8 @@ class RecipesEditTest < ActionDispatch::IntegrationTest
 		updated_description = "Updated Description"
 		updated_instructions = "Updated Instructions"
 		patch recipe_path(@recipe), params: {recipe: {ingredient: updated_ingredient, description: updated_description, recipeName: updated_recipeName, instructions: updated_instructions}}
-		# assert_redirected_to @recipe
-		follow_redirect!
+		assert_redirected_to @recipe
+		# follow_redirect!
 		assert_not flash.empty?
 		@recipe.reload
 		assert_match updated_ingredient, @recipe.ingredient
