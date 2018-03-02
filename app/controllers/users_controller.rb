@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :destroy]
+	before_action :require_same_user, only: [:edit, :update, :destroy]
 
 	def index
 		@users = User.paginate(:page => params[:page], :per_page => 4)
@@ -12,6 +13,7 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		if @user.save
+			session[:user_id] = @user.id
 			flash[:success] = "Hi #{@user.firstname} and welcome to Recipe Locker! You have successfully created a new user account!"
 			redirect_to @user
 		else
@@ -49,6 +51,13 @@ class UsersController < ApplicationController
 
 		def user_params
 			params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation)
+		end
+
+		def require_same_user
+			if current_user != @user
+				flash[:danger] = "You can only edit or delete your own profile!!"
+				redirect_to users_path
+			end
 		end
 
 end

@@ -7,9 +7,11 @@
   <hr class="divider">
 	<p class="text-center"><%= sanitize @recipe.instructions, tags: %w(strong em p br div ul ol li) %></p>
 	<%= render 'shared/user_info' %>
-	<%= link_to "Edit This Recipe", edit_recipe_path(@recipe), class: "btn btn-warning btn-color"%>
-	<%= link_to "Delete This Recipe", recipe_path(@recipe), method: :delete,
-		data: {confirm: "Are you sure you want to delete this recipe? Recipe cannot be recovered once deleted."}, class: "btn btn-danger" %>
+	<% if logged_in? && current_user == @recipe.user %>
+		<%= link_to "Edit This Recipe", edit_recipe_path(@recipe), class: "btn btn-warning btn-color"%>
+		<%= link_to "Delete This Recipe", recipe_path(@recipe), method: :delete,
+			data: {confirm: "Are you sure you want to delete this recipe? Recipe cannot be recovered once deleted."}, class: "btn btn-danger" %>
+	<% end %>
 	<div class="text-center color-match">
 		<small class= "color-match">
 			<%= link_to "Return to recipes listing", recipes_path, class: "btn btn-secondary btn-sm" %>

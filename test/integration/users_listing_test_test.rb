@@ -5,7 +5,7 @@ class UsersListingTestTest < ActionDispatch::IntegrationTest
 	def setup
 		@user = User.create!(firstname: "Billy", lastname: "Robinson", email: "brobinson@example.com",
 											password: "password", password_confirmation: "password")
-		@user = User.create!(firstname: "John", lastname: "Robinson", email: "jrobinson@example.com",
+		@user2 = User.create!(firstname: "John", lastname: "Robinson", email: "jrobinson@example.com",
 											password: "password1", password_confirmation: "password1")
 	end
 
@@ -17,6 +17,7 @@ class UsersListingTestTest < ActionDispatch::IntegrationTest
 	end
 
 	test "should delete user" do
+		sign_in_as(@user, "password")
 		get users_path
 		assert_template 'users/index'
 		assert_difference 'User.count', -1 do

@@ -10,6 +10,7 @@ class RecipesEditTest < ActionDispatch::IntegrationTest
 	end
 
 	test "reject invalid recipe update" do
+		sign_in_as(@user, "password")
 		get edit_recipe_path(@recipe)
 		assert_template 'recipes/edit'
 		patch recipe_path(@recipe), params: {recipe: {ingredient: " ", description: " a description", recipeName: " ", instructions: " "}}
@@ -19,13 +20,14 @@ class RecipesEditTest < ActionDispatch::IntegrationTest
 	end
 
 	test "successfully edit a recipe" do
+		sign_in_as(@user, "password")
 		get edit_recipe_path(@recipe)
 		assert_template 'recipes/edit'
 		updated_ingredient = "Updated Ingredient"
 		updated_recipeName = "Updated Recipe Name"
 		updated_description = "Updated Description"
 		updated_instructions = "Updated Instructions"
-		patch recipe_path(@recipe), params: {recipe: {ingredient: updated_ingredient, description: updated_description, recipeName: updated_recipeName, instructions: updated_instructions}}
+		patch recipe_path(@recipe), params: {recipe: {ingredient: updated_ingredient, recipeName: updated_recipeName, description: updated_description, instructions: updated_instructions}}
 		assert_redirected_to @recipe
 		# follow_redirect!
 		assert_not flash.empty?
