@@ -29,7 +29,7 @@
 					</li>
 					<li class="nav-item dropdown px-lg-4">
 						<a class="nav-link dropdown-toggle text-uppercase text-expanded" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<%= current_user.firstname %>'s Profile
+							<%= current_user.firstname %>'s Profile <%= "Admin" if current_user.admin %>
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" href="#"><%= link_to "View your profile", user_path(current_user), class: "nav-link text-uppercase text-expanded" %></a>

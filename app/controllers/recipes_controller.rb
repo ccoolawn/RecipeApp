@@ -56,7 +56,7 @@ class RecipesController < ApplicationController
 		end
 
 		def require_same_user
-			if current_user != @recipe.user
+			if current_user != @recipe.user and !current_user.admin?
 				flash[:danger] = "You can only edit and delete your own recipes!!"
 				redirect_to recipes_path
 			end
